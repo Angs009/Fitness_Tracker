@@ -1,5 +1,9 @@
 name: Fitness Tracker CI Pipeline
 
+env:
+  DOCKER_IMAGE: angira9/fitness-tracker
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 on:
   push:
     branches:
@@ -42,5 +46,5 @@ jobs:
 
       - name: Push Docker Image
         run: |
-          docker tag fitness-tracker:${{ github.sha }} ${{ secrets.DOCKER_USERNAME }}/fitness-tracker:latest
-          docker push ${{ secrets.DOCKER_USERNAME }}/fitness-tracker:latest
+          docker tag fitness-tracker:${{ github.sha }} $DOCKER_IMAGE:latest
+          docker push $DOCKER_IMAGE:latest
